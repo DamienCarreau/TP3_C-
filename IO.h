@@ -1,14 +1,14 @@
 /*************************************************************************
-                           Ensemble  -  description
+                             IO  -  description
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
+    début                : 2019-2020
+    copyright            : (C) 2019-2020 par CARREAU Damien	HUE Jérome
+    e-mail               : damien.carreau@insa-lyon.fr	jerome.hue@insa-lyon.fr
 *************************************************************************/
 
-//---------- Interface de la classe <Ensemble> (fichier Ensemble.h) ----------------
-#if ! defined ( ENSEMBLE_H )
-#define ENSEMBLE_H
+//---------- Interface de la classe <IO> (fichier IO.h) ----------------
+#if ! defined ( IO_H )
+#define IO_H
 
 //--------------------------------------------------- Interfaces utilisées
 
@@ -17,8 +17,8 @@
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <Ensemble>
-//
+// Rôle de la classe <IO>
+// Regroupe les méthodes de sauvegarde et de chargement du programme
 //
 //------------------------------------------------------------------------
 
@@ -28,11 +28,13 @@ class IO
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
+    void Chargement();
     // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    // Charge le flux du fichier dans le programme
+    
+    void Sauvegarde();
+    // Mode d'emploi :
+    // Sauvegarde le catalogue courant dans le fichier
 
 
 //------------------------------------------------- Surcharge d'opérateurs
