@@ -18,17 +18,14 @@ int main()
 	t1.setArr("Paris");
 	t1.afficher();
 	
-
 	TrajetSimple t2 = TrajetSimple("Rennes", "Ville2", "Trail");
 	 
-
 	//Création d'un trajet simple
 	TrajetSimple TS1;
 	TS1.setDepp("Besançon");
 	TS1.setArr("Pau");
 	TS1.setMoyenT("Voiture");
 	TS1.afficher();
-
 	//Création d'un trajet Composé
 	TrajetComp TC1;
 	TrajetSimple t5 = creerTrajetSimple();
@@ -39,9 +36,9 @@ int main()
 
 	//Création du catalogue
 	Catalogue C;
-	while(1)
+	for(;;)
 	{
-		cout<< "Bonjour, que voulez vous faire : (1) Créer un trajet (2) Afficher le catalogue (3) Chercher un trajet (4) Quitter" << endl;
+		cout<< "Bonjour, que voulez vous faire : \n     (1) Créer un trajet\n     (2) Afficher le catalogue\n     (3) Chercher un trajet\n     (4) Chargement d'un catalogue\n     (5) Sauvegarde du Catalogue\n     (6) Quitter" << endl;
 		char choix= '0';
 		cin >> choix;
 		if(choix =='1')
@@ -66,14 +63,22 @@ int main()
 			delete []a;
 			delete []b;
 		}
-		else
+		else if(choix == '4')
 		{
-		/*	for(int i =0; i<C.getNbTrajets(); i++)
-			{
-				delete (C.getListeTraj()[i]);
-			}
-		*/
-				
+			string name;
+			cout << "Entrez votre nom de fichier" << endl;
+			cin >> name;
+			cout << "Appel du chargement"<< endl;
+		}
+		else if(choix == '5')
+		{
+			string name;
+			cout << "Entrer votre nom de fichier" << endl;
+			cin >> name;
+			cout << "Appel de la sauvegarde" <<endl;
+		}
+		else if(choix == '6')
+		{	
 			break;
 		}
 	
