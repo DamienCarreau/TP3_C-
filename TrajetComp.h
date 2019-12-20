@@ -33,6 +33,8 @@ public:
 	//Mode d'emploi :
 	//Affiche un trajet composé en affichant un à un ses sous-trajets 
 
+	void sauvegarde(ofstream & flux);
+
 	void addTrajet(Trajet* tr);
 	//Mode d'emploi :
 	//Ajoute le trajet en paramètre à la fin du tableau en vérifiant
@@ -81,4 +83,3 @@ protected:
 //-------------------------------- Autres définitions dépendantes de <TrajetComp>
 
 #endif // TRAJETC_H
-

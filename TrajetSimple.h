@@ -34,6 +34,8 @@ public:
 	//Mode d'emploi :
 	//Affiche un trajet simple en donnant sa ville de départ
 	//sa ville d'arrivée et son moyen de transport
+	
+	void sauvegarde(ofstream & flux);
 
 	void setMoyenT(const char* mt);
 	//Mode d'emploi :
@@ -84,4 +86,3 @@ TrajetSimple*  creerTrajetSimple();
 //Renvoie le trajet simple créé
 
 #endif // TRAJETSIMPLE_H
-

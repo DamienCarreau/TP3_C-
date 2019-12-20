@@ -15,6 +15,7 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
+#include <fstream>
 #include <cstring>
 //------------------------------------------------------ Include personnel
 #include "Catalogue.h"
@@ -38,6 +39,22 @@ using namespace std;
 
 	}//---------Fin de afficherCatalogue
 
+	void Catalogue::sauvegarde(const string name)
+	{
+		ofstream flux(name.c_str());
+		if(flux)
+		{
+			for(int i = 0; i < nbTrajets; i++)
+			{
+				listeTraj[i]->sauvegarde(flux);
+				flux << endl;
+			}
+		}
+		else
+		{
+			cout << "ERREUR: Impossible d'ouvrir le fichier." << endl;
+		}
+	}	
 
 	void Catalogue::addTrajet(Trajet* t)
 	//Algorithme :
@@ -191,7 +208,6 @@ ostream & operator << (ostream & out , const Catalogue & unCatalogue)
 		Trajet t  = *(unCatalogue.getListeTraj()[i]);
 		t.afficher();
 		cout << "\n";
-
 	}
 	return out;
 }
@@ -236,6 +252,3 @@ Catalogue::~Catalogue ( )
 	}
 	delete [] (listeTraj);
 } //----- Fin de ~Catalogue
-
-
-

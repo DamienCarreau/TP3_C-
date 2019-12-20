@@ -40,6 +40,8 @@ public:
 	//Mode d'emploi :
 	//Affiche tous les trajets du catalogue
 
+	void sauvegarde(const string name);
+
 	void creerTrajet();	
 	//Mode d'emploi :
 	//Permet de créer un trajet en entrant ces caractèristiques
@@ -123,4 +125,3 @@ protected:
 	//nb est le nombre de trajets dans chemin 
 
 #endif // CATALOGUE_H
-

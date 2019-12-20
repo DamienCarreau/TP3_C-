@@ -13,6 +13,7 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
+#include <fstream>
 #include <cstring>
 
 //------------------------------------------------------ Include personnel
@@ -35,6 +36,13 @@ using namespace std;
 		}
 	}//--- fin de afficher
 
+	void TrajetComp::sauvegarde(ofstream & flux)
+	{
+		for(int i = 0; i < nbTrajets; i++){
+			sousTrajets[i]->sauvegarde(flux);
+			flux << " ";
+		}
+	}	
 
 	void TrajetComp::addTrajet(Trajet* tr)
 	//Algorithme :
@@ -142,4 +150,3 @@ TrajetComp::~TrajetComp( )
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-

@@ -76,6 +76,7 @@ int main()
 			cout << "Entrer votre nom de fichier" << endl;
 			cin >> name;
 			cout << "Appel de la sauvegarde" <<endl;
+			C.sauvegarde(name);
 		}
 		else if(choix == '6')
 		{	

@@ -13,6 +13,7 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
+#include <fstream>
 #include <cstring>
 //------------------------------------------------------ Include personnel
 #include "Trajet.h"
@@ -26,6 +27,11 @@ using namespace std;
 		cout << villeDepart << endl;
 		cout << villeArr << endl;
 	} //------ Fin de afficher
+
+	void Trajet::sauvegarde(ofstream & flux)
+	{
+		
+	}
 	
 	void Trajet::setDepp(const char*  dep)
 	{
@@ -99,4 +105,3 @@ Trajet::~Trajet()
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-

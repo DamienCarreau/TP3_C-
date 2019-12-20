@@ -13,6 +13,7 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
+#include <fstream>
 #include <cstring>
 //------------------------------------------------------ Include personnel
 #include "TrajetSimple.h"
@@ -27,6 +28,11 @@ using namespace std;
 	{
 		cout << "Départ : " << villeDepart << " | Arrivée : " << villeArr << " | Moyen de Transport : " << moyenT << endl;
 	}//----fin de afficher
+
+	void TrajetSimple::sauvegarde(ofstream & flux)
+	{
+		flux << villeDepart << " " << villeArr << " " << moyenT;
+	}//------fin de sauvegarde
 
 	void TrajetSimple::setMoyenT(const char* mt)
 	{
@@ -100,4 +106,3 @@ TrajetSimple::~TrajetSimple ()
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-

@@ -10,8 +10,8 @@
 #if ! defined ( TRAJET_H )
 #define TRAJET_H
 
-
-
+#include <fstream>
+using namespace std;
 //--------------------------------------------------- Interfaces utilisées
 
 //------------------------------------------------------------- Constantes
@@ -38,7 +38,8 @@ public:
 	//Mode d'emploi :
 	//Affiche un trajet en donnant sa ville de départ et celle d'arrivée
 	//Virtual car Trajet est parent de TrajetSimple et TrajetComp
-
+	
+	virtual void sauvegarde(ofstream & flux);
 //--------------------------------------------------Accesseurs et mutateurs
 
     	void setDepp(const char*  dep);
@@ -89,4 +90,3 @@ protected:
 //-------------------------------- Autres définitions dépendantes de <Trajet>
 
 #endif // TRAJET_H
-
