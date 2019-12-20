@@ -75,8 +75,20 @@ int main()
 			string name;
 			cout << "Entrer votre nom de fichier" << endl;
 			cin >> name;
-			cout << "Appel de la sauvegarde" <<endl;
-			C.sauvegarde(name);
+			int choice;
+			cout << "     (1) Sauvegarde totale\n     (2) Sauvegarde selon le type\n";
+			cin >> choice;
+			if(choice == 1)
+			{
+				C.sauvegarde(name);
+				cout << "Catalogue sauvegardé" <<endl;
+			}
+			else if (choice == 2)
+			{
+				cout << "(1) Trajet Simple  (2) TrajetComposés" << endl;
+				cin >> choice;
+				C.sauvegarde_type(name,choice);
+			}
 		}
 		else if(choix == '6')
 		{	

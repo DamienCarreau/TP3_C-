@@ -42,6 +42,8 @@ public:
 
 	void sauvegarde(const string name);
 
+	void sauvegarde_type(const string name, int type);
+
 	void creerTrajet();	
 	//Mode d'emploi :
 	//Permet de créer un trajet en entrant ces caractèristiques

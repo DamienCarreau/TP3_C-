@@ -54,7 +54,33 @@ using namespace std;
 		{
 			cout << "ERREUR: Impossible d'ouvrir le fichier." << endl;
 		}
-	}	
+	}
+
+	void Catalogue::sauvegarde_type(const string name, int type)
+	{
+		
+		ofstream flux(name.c_str());
+		if(flux)
+		{
+			for(int i = 0; i < nbTrajets; i++)
+			{
+				if(i == 1 && sizeof(listeTraj[i]) == sizeof(TrajetSimple))
+				{
+					listeTraj[i]->sauvegarde(flux);
+					flux << endl;
+				}
+				else if (i == 2 && sizeof(listeTraj[i]) == sizeof(TrajetComp))
+				{
+					listeTraj[i]->sauvegarde(flux);
+					flux << endl;
+				}
+			}
+		}
+		else
+		{
+			cout << "ERREUR: Impossible d'ouvrir le fichier." << endl;
+		}
+	}
 
 	void Catalogue::addTrajet(Trajet* t)
 	//Algorithme :
