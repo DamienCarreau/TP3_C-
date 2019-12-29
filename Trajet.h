@@ -57,6 +57,8 @@ public:
 	const char* getDep();
 	//Mode d'emploi :
 	//Retourne la ville de départ du trajet
+		
+	const char* getType();
 
 //------------------------------------------------- Surcharge d'opérateurs
 
@@ -70,7 +72,7 @@ public:
 	//Mode d'emploi (constructeur de copie) :
 	//Construit un trajet en copiant les attributs du trajet en paramètre
 
-	Trajet(const char* dep, const char* arr);
+	Trajet(const char* dep, const char* arr, const char* t);
 	//Mode d'emploi :
 	//Construit un trajet à l'aide de deux chaines de caractères
 
@@ -85,6 +87,7 @@ protected:
 //----------------------------------------------------- Attributs protégés
 	const char* villeDepart;
 	const char* villeArr;
+	const char* type;
 };
 
 //-------------------------------- Autres définitions dépendantes de <Trajet>

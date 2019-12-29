@@ -64,21 +64,45 @@ using namespace std;
 		{
 			for(int i = 0; i < nbTrajets; i++)
 			{
-				if(i == 1 && sizeof(listeTraj[i]) == sizeof(TrajetSimple))
+				if(type == 1 && strcmp(listeTraj[i]->getType(),"simple") == 0)
 				{
 					listeTraj[i]->sauvegarde(flux);
 					flux << endl;
 				}
-				else if (i == 2 && sizeof(listeTraj[i]) == sizeof(TrajetComp))
+				else if (type == 2 && strcmp(listeTraj[i]->getType(),"comp") == 0)
 				{
 					listeTraj[i]->sauvegarde(flux);
 					flux << endl;
 				}
 			}
+			cout << "Catalogue sauvegardé" << endl;
 		}
 		else
 		{
 			cout << "ERREUR: Impossible d'ouvrir le fichier." << endl;
+		}
+	}
+
+	void Catalogue::sauvegarde_ville(const string name, const char* ville,const int type)
+	{
+		ofstream flux(name.c_str());
+		if(flux)
+		{
+			for(int i = 0; i <nbTrajets; i++)
+			{
+				if(type == 1 && strcmp(listeTraj[i]->getDep(),ville) == 0){
+					listeTraj[i]->sauvegarde(flux);
+					flux << endl;
+				}else if(type == 2 && strcmp(listeTraj[i]->getArr(),ville) == 0){
+					listeTraj[i]->sauvegarde(flux);
+					flux << endl;
+				}
+			}
+			cout << "Catalogue sauvegardé" << endl;
+		}
+		else
+		{
+			cout << "ERREUR: Impossible d'ouvrir le fichier." <<endl;
 		}
 	}
 

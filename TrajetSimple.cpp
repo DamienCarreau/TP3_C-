@@ -52,8 +52,7 @@ using namespace std;
 		cout << "Entrez une ville d'arrivée " << endl;
 		cin >> arr;
 		cout << "Entrez un moyen de transport " << endl;
-		cin >> mt;
-
+		cin >> mt;		
 
 		return new TrajetSimple(dep, arr, mt);
 	}//---fin de creerTrajetSimple
@@ -85,7 +84,7 @@ TrajetSimple::TrajetSimple(const TrajetSimple & unTrajetSimple) : Trajet(unTraje
 
 
 
-TrajetSimple::TrajetSimple (const char* s1,const  char* s2,const  char* mt ): Trajet(s1,s2), moyenT(mt)
+TrajetSimple::TrajetSimple (const char* s1,const  char* s2,const  char* mt ): Trajet(s1,s2,"simple"), moyenT(mt)
 {
 	#ifdef MAP
    		 cout << "Appel au constructeur de <TrajetSimple>" << endl;

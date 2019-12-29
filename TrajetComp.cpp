@@ -56,6 +56,7 @@ using namespace std;
 			sousTrajets[nbTrajets] = tr;
 			villeDepart = sousTrajets[0]->getDep();
 			villeArr = tr->getArr();
+			type = "comp";
 			++nbTrajets;
 		}
 		else
@@ -121,7 +122,7 @@ TrajetComp::TrajetComp()
 	return;
 } //Fin du constructeur par défaut sans paramètre
 
-TrajetComp::TrajetComp (const char* s1,const  char* s2, Trajet** mt ):Trajet(s1, s2)
+TrajetComp::TrajetComp (const char* s1,const  char* s2, Trajet** mt ):Trajet(s1, s2,"comp")
 {
     #ifdef MAP
     cout << "Appel au constructeur de <TrajetComp>" << endl;

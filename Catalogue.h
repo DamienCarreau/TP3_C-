@@ -44,6 +44,8 @@ public:
 
 	void sauvegarde_type(const string name, int type);
 
+	void sauvegarde_ville(const string name, const char* ville, const int type);
+
 	void creerTrajet();	
 	//Mode d'emploi :
 	//Permet de créer un trajet en entrant ces caractèristiques

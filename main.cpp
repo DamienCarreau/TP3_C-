@@ -11,29 +11,6 @@
 using namespace std;
 int main()
 {
-	/*
-	//Création d'un trajet
-	Trajet t1;
-	t1.setDepp("Lyon");
-	t1.setArr("Paris");
-	t1.afficher();
-	
-	TrajetSimple t2 = TrajetSimple("Rennes", "Ville2", "Trail");
-	 
-	//Création d'un trajet simple
-	TrajetSimple TS1;
-	TS1.setDepp("Besançon");
-	TS1.setArr("Pau");
-	TS1.setMoyenT("Voiture");
-	TS1.afficher();
-	//Création d'un trajet Composé
-	TrajetComp TC1;
-	TrajetSimple t5 = creerTrajetSimple();
-	TrajetSimple t6 = creerTrajetSimple();
-	TC1.addTrajet(t5);
-	TC1.addTrajet(t6);
-	*/
-
 	//Création du catalogue
 	Catalogue C;
 	for(;;)
@@ -76,7 +53,7 @@ int main()
 			cout << "Entrer votre nom de fichier" << endl;
 			cin >> name;
 			int choice;
-			cout << "     (1) Sauvegarde totale\n     (2) Sauvegarde selon le type\n";
+			cout << "     (1) Sauvegarde totale\n     (2) Sauvegarde selon le type\n     (3) Sauvegarde selon une ville\n";
 			cin >> choice;
 			if(choice == 1)
 			{
@@ -86,8 +63,27 @@ int main()
 			else if (choice == 2)
 			{
 				cout << "(1) Trajet Simple  (2) TrajetComposés" << endl;
-				cin >> choice;
+				choice = 0;
+				while(choice < 1 || choice > 2){
+					cin >> choice;
+				}
 				C.sauvegarde_type(name,choice);
+			}
+			else if(choice == 3)
+			{
+				cout << "(1) Selon ville de départ  (2) Selon ville d'arrivée\n";
+				choice = 0;
+				while(choice > 2 || choice < 1){
+					cin >> choice;
+				}
+				cout << "Entrez le nom de la ville\n";
+				char * ville = new char[128];
+				cin >> ville;
+				C.sauvegarde_ville(name,ville,choice);
+			}
+			else
+			{
+				cout << "Erreur saisie\n";
 			}
 		}
 		else if(choix == '6')

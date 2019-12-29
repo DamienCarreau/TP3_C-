@@ -53,6 +53,11 @@ using namespace std;
 		return this->villeDepart;
 	} //------ fin de getDep
 
+	const char* Trajet::getType()
+	{
+		return this->type;
+	}
+
 //------------------------------------------------- Surcharge d'opérateurs
 //Xxx & Xxx::operator = ( const Xxx & unXxx )
 // Algorithme :
@@ -67,6 +72,7 @@ Trajet::Trajet()
 {
 	villeDepart = "";
 	villeArr = "";
+	type = "";
 	#ifdef MAP
 		cout << "Appel au constructeur par defaut sans paramètres de <Trajet>" << endl;
 	#endif
@@ -84,13 +90,14 @@ Trajet::Trajet ( const Trajet & unTrajet )
 } //----- Fin de Trajet (constructeur de copie)
 
 
-Trajet::Trajet (const char* dep, const char* arr)
+Trajet::Trajet (const char* dep, const char* arr, const char* t)
 {
 	#ifdef MAP
 		cout << "Appel au constructeur par défaut avec paramètres de <Trajet>" << endl;
 	#endif
 	this->villeDepart =dep;
 	this->villeArr = arr;
+	this->type = t;
 } //----- Fin de Trajet (constructeur par défaut)
 
 
