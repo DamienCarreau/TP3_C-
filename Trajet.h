@@ -50,15 +50,15 @@ public:
 	//Mode d'emploi :
 	//Change la ville d'arrivée par arr
 
-	const char* getArr();
+	char* getArr();
 	//Mode d'emploi :
 	//Retourne la ville d'arrivée du trajet
 
-	const char* getDep();
+	char* getDep();
 	//Mode d'emploi :
 	//Retourne la ville de départ du trajet
 		
-	const char* getType();
+	char* getType();
 
 //------------------------------------------------- Surcharge d'opérateurs
 
@@ -85,9 +85,9 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-	const char* villeDepart;
-	const char* villeArr;
-	const char* type;
+	char* villeDepart;
+	char* villeArr;
+	char* type;
 };
 
 //-------------------------------- Autres définitions dépendantes de <Trajet>

@@ -99,6 +99,7 @@ TrajetSimple::~TrajetSimple ()
 	delete [] villeDepart;
 	delete [] villeArr;
 	delete [] moyenT;
+	delete [] type;
 
 } //--- fin du destructeur
 

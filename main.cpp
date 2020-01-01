@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstring>
+#include <string>
 #include "Trajet.h"
 #include "TrajetSimple.h"
 #include "TrajetComp.h"
@@ -44,8 +45,42 @@ int main()
 		{
 			string name;
 			cout << "Entrez votre nom de fichier" << endl;
-			cin >> name;
-			cout << "Appel du chargement"<< endl;
+			cin >> name;	
+			int choice;
+			cout << "     (1) Chargement total\n     (2) Chargement selon le type\n     (3) Chargement selon une ville\n";
+			cin >> choice;
+			if(choice == 1)
+			{
+				C.Chargement(name);
+				cout << "Catalogue chargé" <<endl;
+			}
+			else if (choice == 2)
+			{
+				cout << "(1) Trajet Simple  (2) TrajetComposés" << endl;
+				choice = 0;
+				while(choice < 1 || choice > 2){
+					cin >> choice;
+				}
+				C.Chargement_type(name,choice);
+			}
+			else if(choice == 3)
+			{
+				
+				cout << "(1) Selon ville de départ  (2) Selon ville d'arrivée\n";
+				choice = 0;
+				while(choice > 2 || choice < 1){
+					cin >> choice;
+				}
+				cout << "Entrez le nom de la ville\n";
+				char * ville = new char[128];
+				cin >> ville;
+				C.Chargement_ville(name,ville,choice);
+				
+			}
+			else
+			{
+				cout << "Erreur saisie\n";
+			}
 		}
 		else if(choix == '5')
 		{

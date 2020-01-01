@@ -35,25 +35,25 @@ using namespace std;
 	
 	void Trajet::setDepp(const char*  dep)
 	{
-		villeDepart = dep;
+		strcpy(villeDepart, dep);
 	} //------ Fin de setDepp
 
 	void Trajet::setArr(const char* arr)
 	{
-		villeArr = arr;
+		strcpy(villeArr, arr);
 	} //------ Fin de setArr
 
-	const char* Trajet::getArr()
+	char* Trajet::getArr()
 	{
 		return this->villeArr;
 	} //------ Fin de getArr
 	
-	const char* Trajet::getDep()
+	char* Trajet::getDep()
 	{
 		return this->villeDepart;
 	} //------ fin de getDep
 
-	const char* Trajet::getType()
+	char* Trajet::getType()
 	{
 		return this->type;
 	}
@@ -95,9 +95,18 @@ Trajet::Trajet (const char* dep, const char* arr, const char* t)
 	#ifdef MAP
 		cout << "Appel au constructeur par défaut avec paramètres de <Trajet>" << endl;
 	#endif
-	this->villeDepart =dep;
-	this->villeArr = arr;
-	this->type = t;
+	//this->villeDepart =dep;
+	//this->villeArr = arr;
+	//this->type = t;
+
+
+	villeDepart = new char[strlen(dep)+1];
+	villeArr = new char[strlen(arr)+1];
+	type = new char[strlen(t)+1]; 
+	strcpy(villeDepart, dep);
+	strcpy(villeArr, arr);	
+	strcpy(type, t);
+
 } //----- Fin de Trajet (constructeur par défaut)
 
 

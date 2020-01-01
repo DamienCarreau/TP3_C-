@@ -46,6 +46,13 @@ public:
 
 	void sauvegarde_ville(const string name, const char* ville, const int type);
 
+	
+	void Chargement(const string name);
+	
+	void Chargement_type(const string name, int type);
+
+	void Chargement_ville(const string name, const char* ville, const int type);
+	
 	void creerTrajet();	
 	//Mode d'emploi :
 	//Permet de créer un trajet en entrant ces caractèristiques

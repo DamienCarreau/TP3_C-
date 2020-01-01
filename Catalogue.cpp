@@ -17,6 +17,8 @@ using namespace std;
 #include <iostream>
 #include <fstream>
 #include <cstring>
+#include <sstream>
+#include <vector>
 //------------------------------------------------------ Include personnel
 #include "Catalogue.h"
 #include "Trajet.h"
@@ -55,6 +57,155 @@ using namespace std;
 			cout << "ERREUR: Impossible d'ouvrir le fichier." << endl;
 		}
 	}
+
+
+	void Catalogue::Chargement(const string name)
+	{
+		
+ 		ifstream monflux("testfile.txt");
+		if(monflux) 
+		{
+			int nbTrajets=-1;
+			while(!monflux.eof())
+			{	
+				
+				string str;
+				getline(monflux, str);
+				vector<string> v; 
+	  
+				stringstream ss(str); 
+	  
+				while (ss.good()) 
+				{ 
+					string substr; 
+					getline(ss, substr, ';'); 
+					v.push_back(substr); 
+				} 
+	  
+
+				if(v[0] != "")
+				{
+
+					//cout << "Trajet n°" << ++nbTrajets<<endl; 		
+					//for (size_t i = 0; i < v.size(); i++) 
+					//	cout <<  "v[" << i<< "]:"<<  v[i] << endl;
+						
+				if(v.size()==3)
+				{
+				char* dep = new char[130];
+				char* arr = new char[130];
+				char* mt  = new char[130];
+				strcpy(dep, v[0].c_str());
+				strcpy(arr, v[1].c_str());
+				strcpy(mt, v[2].c_str());
+				TrajetSimple* t  = new TrajetSimple(dep, arr, mt);
+				addTrajet(t);
+				cout << "Trajet Inséré" << endl;
+				delete [] dep;
+				delete [] arr;
+				delete [] mt;
+				}
+				else if (v.size()>3)
+				{
+					TrajetComp* TC = new TrajetComp();
+					for(int i = 0; i<v.size()/3; i++)
+					{
+							
+						char* dep = new char[130];
+						char* arr = new char[130];
+						char* mt  = new char[130];
+						strcpy(dep, v[0+3*i].c_str());
+						strcpy(arr, v[1+3*i].c_str());
+						strcpy(mt, v[2+3*i].c_str());
+						TrajetSimple* t  = new TrajetSimple(dep, arr, mt);
+						TC->addTrajet(t);	
+					}
+					addTrajet(TC);
+				}
+				}
+
+			}
+				
+		} 
+		else 
+		{	
+			cout << "ERREUR: Impossible d'ouvrir le fichier." <<endl;
+		}	
+		monflux.close();
+
+	}
+
+	
+	void Catalogue::Chargement_type(const string name, int type)
+	{
+		
+ 		ifstream monflux("testfile.txt");
+		if(monflux)
+		{	
+			int nbTrajets=-1;	
+			while(!monflux.eof())
+			{	
+				string str;
+				getline(monflux, str);
+				vector<string> v; 
+				stringstream ss(str); 
+	  
+				while (ss.good()) { 
+					string substr; 
+					getline(ss, substr, ';'); 
+					v.push_back(substr); 
+				} 
+	  
+				//cout << "Taile : " << v.size() << endl;
+
+				if(v[0] != "")
+				{
+
+					//cout << "Trajet n°" << ++nbTrajets<<endl; 		
+					//for (size_t i = 0; i < v.size(); i++) 
+					//cout <<  "v[" << i<< "]:"<<  v[i] << endl;
+						
+				if(v.size()==3 && type==1)
+				{
+				char* dep = new char[130];
+				char* arr = new char[130];
+				char* mt  = new char[130];
+				strcpy(dep, v[0].c_str());
+				strcpy(arr, v[1].c_str());
+				strcpy(mt, v[2].c_str());
+				TrajetSimple* t  = new TrajetSimple(dep, arr, mt);
+				addTrajet(t);
+				cout << "Trajet Inséré" << endl;
+				//+ Deletes
+				}
+				else if (v.size()>3 && type==2)
+				{
+					TrajetComp* TC = new TrajetComp();
+					for(int i = 0; i<v.size()/3; i++)
+					{
+							
+						char* dep = new char[130];
+						char* arr = new char[130];
+						char* mt  = new char[130];
+						strcpy(dep, v[0+3*i].c_str());
+						strcpy(arr, v[1+3*i].c_str());
+						strcpy(mt, v[2+3*i].c_str());
+						TrajetSimple* t  = new TrajetSimple(dep, arr, mt);
+						TC->addTrajet(t);	
+					}
+					addTrajet(TC);
+				}
+				}
+			}	
+		}
+		else
+		{
+			cout << "ERREUR: Impossible d'ouvrir le fichier." <<endl;
+		}
+		monflux.close();
+	}
+
+
 
 	void Catalogue::sauvegarde_type(const string name, int type)
 	{
@@ -105,6 +256,82 @@ using namespace std;
 			cout << "ERREUR: Impossible d'ouvrir le fichier." <<endl;
 		}
 	}
+		
+	void Catalogue::Chargement_ville(const string name, const char* ville, const int type)
+	{
+		
+		ifstream monflux("testfile.txt");
+		if(monflux)
+		{
+			int nbTrajets=-1;
+			
+			while(!monflux.eof())
+			{	
+				string str;
+				getline(monflux, str);
+				vector<string> v; 
+				stringstream ss(str); 
+	  
+				while (ss.good()) { 
+					string substr; 
+					getline(ss, substr, ';'); 
+					v.push_back(substr); 
+				} 
+	  
+
+				if(v[0] != "")
+				{
+
+					//cout << "Trajet n°" << ++nbTrajets<<endl; 		
+					//for (size_t i = 0; i < v.size(); i++) 
+					//cout <<  "v[" << i<< "]:"<<  v[i] << endl;
+						
+				if(v.size()==3 && strcmp(v[type-1].c_str(),ville)==0 )
+				{
+				char* dep = new char[130];
+				char* arr = new char[130];
+				char* mt  = new char[130];
+				strcpy(dep, v[0].c_str());
+				strcpy(arr, v[1].c_str());
+				strcpy(mt, v[2].c_str());
+				TrajetSimple* t  = new TrajetSimple(dep, arr, mt);
+				addTrajet(t);
+				cout << "Trajet Inséré" << endl;	
+				delete [] dep;
+				delete [] arr;
+				delete [] mt;
+				}
+				else if (v.size()>3 && ( (strcmp(v[0].c_str(),ville)==0 && type==1) || (strcmp(v[v.size()-2].c_str(), ville)==0 && type==2) ) )
+				{
+					TrajetComp* TC = new TrajetComp();
+					for(int i = 0; i<v.size()/3; i++)
+					{
+							
+						char* dep = new char[130];
+						char* arr = new char[130];
+						char* mt  = new char[130];
+						strcpy(dep, v[0+3*i].c_str());
+						strcpy(arr, v[1+3*i].c_str());
+						strcpy(mt, v[2+3*i].c_str());
+						TrajetSimple* t  = new TrajetSimple(dep, arr, mt);
+						TC->addTrajet(t);	
+					}
+					
+					addTrajet(TC);
+				}
+
+				}
+					
+			}
+		} 
+		else 
+		{
+			cout << "ERREUR: Impossible d'ouvrir le fichier." <<endl;	
+		}	
+	}
+
+
+
 
 	void Catalogue::addTrajet(Trajet* t)
 	//Algorithme :
