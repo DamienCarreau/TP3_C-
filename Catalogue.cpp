@@ -62,7 +62,7 @@ using namespace std;
 	void Catalogue::Chargement(const string name)
 	{
 		
- 		ifstream monflux("testfile.txt");
+ 		ifstream monflux(name.c_str());
 		if(monflux) 
 		{
 			int nbTrajets=-1;
@@ -140,7 +140,7 @@ using namespace std;
 	void Catalogue::Chargement_type(const string name, int type)
 	{
 		
- 		ifstream monflux("testfile.txt");
+ 		ifstream monflux(name.c_str());
 		if(monflux)
 		{	
 			int nbTrajets=-1;	
@@ -211,7 +211,7 @@ using namespace std;
 	void Catalogue::Chargement_intervalle(const string name, int x, int y)
 	{
 		
- 		ifstream monflux("testfile.txt");
+ 		ifstream monflux(name.c_str());
 		if(monflux)
 		{	
 			int nbTrajets=0;	
@@ -325,6 +325,19 @@ using namespace std;
 		else
 		{
 			cout << "ERREUR: Impossible d'ouvrir le fichier." <<endl;
+		}
+	}
+
+	void Catalogue::sauvegarde_intervalle(const string name, const int a, const int b){
+		ofstream flux(name.c_str());
+		if(flux){
+			for(int i = a-1 ; i < b; i++){
+				listeTraj[i]->sauvegarde(flux);
+				flux << endl;
+			}
+			cout << "Catalogue sauvegardé" <<endl;
+		}else{
+			cout << "ERREUR: Impossible d'ouvrir le fichier."<<endl;
 		}
 	}
 		

@@ -45,7 +45,8 @@ public:
 	void sauvegarde_type(const string name, int type);
 
 	void sauvegarde_ville(const string name, const char* ville, const int type);
-
+	
+	void sauvegarde_intervalle(const string name, const int a, const int b);
 	
 	void Chargement(const string name);
 	

@@ -100,7 +100,7 @@ int main()
 			cout << "Entrer votre nom de fichier" << endl;
 			cin >> name;
 			int choice;
-			cout << "     (1) Sauvegarde totale\n     (2) Sauvegarde selon le type\n     (3) Sauvegarde selon une ville\n";
+			cout << "     (1) Sauvegarde totale\n     (2) Sauvegarde selon le type\n     (3) Sauvegarde selon une ville\n     (4) Sauvegarde selon un interalle\n";
 			cin >> choice;
 			if(choice == 1)
 			{
@@ -127,6 +127,15 @@ int main()
 				char * ville = new char[128];
 				cin >> ville;
 				C.sauvegarde_ville(name,ville,choice);
+			}else if(choice == 4)
+			{
+				cout << "Entrez la première borne de votre intervalle :"<<endl;
+				int a;
+				cin >> a;
+				cout << "Entrez la seconde borne :"<<endl;
+				int b;
+				cin >> b;
+				C.sauvegarde_intervalle(name,a,b);
 			}
 			else
 			{
