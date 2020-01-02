@@ -53,6 +53,8 @@ public:
 
 	void Chargement_ville(const string name, const char* ville, const int type);
 	
+	void Chargement_intervalle(const string name, int x, int y);
+
 	void creerTrajet();	
 	//Mode d'emploi :
 	//Permet de créer un trajet en entrant ces caractèristiques

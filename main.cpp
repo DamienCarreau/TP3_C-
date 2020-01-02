@@ -47,7 +47,7 @@ int main()
 			cout << "Entrez votre nom de fichier" << endl;
 			cin >> name;	
 			int choice;
-			cout << "     (1) Chargement total\n     (2) Chargement selon le type\n     (3) Chargement selon une ville\n";
+			cout << "     (1) Chargement total\n     (2) Chargement selon le type\n     (3) Chargement selon une ville\n     (4) Chargement selon un intervalle\n";
 			cin >> choice;
 			if(choice == 1)
 			{
@@ -76,6 +76,18 @@ int main()
 				cin >> ville;
 				C.Chargement_ville(name,ville,choice);
 				
+			}
+			else if(choice == 4)
+			{
+				cout << "Entrez le numéro du premier trajet à charger : " << endl;
+				int x,y;
+				cin >> x;y = x-1;
+				cout << "Entrez le numéro du dernier trajet à charger : " << endl;	
+				while(x>y){
+					cin >> y;
+				}
+				C.Chargement_intervalle(name, x, y);
+			
 			}
 			else
 			{

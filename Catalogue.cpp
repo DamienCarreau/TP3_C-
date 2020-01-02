@@ -34,7 +34,7 @@ using namespace std;
 	{
 		for (int i = 0 ; i < nbTrajets ; i++)
 		{
-			cout << "Trajet n° : " << i << endl;
+			cout << "Trajet n° : " << i+1 << endl;
 			listeTraj[i]->afficher();
 			cout << endl;
 		}
@@ -121,6 +121,7 @@ using namespace std;
 						TC->addTrajet(t);	
 					}
 					addTrajet(TC);
+					cout << "Trajet Inséré" << endl;
 				}
 				}
 
@@ -194,6 +195,7 @@ using namespace std;
 						TC->addTrajet(t);	
 					}
 					addTrajet(TC);
+					cout << "Trajet Inséré" << endl;
 				}
 				}
 			}	
@@ -205,6 +207,75 @@ using namespace std;
 		monflux.close();
 	}
 
+		
+	void Catalogue::Chargement_intervalle(const string name, int x, int y)
+	{
+		
+ 		ifstream monflux("testfile.txt");
+		if(monflux)
+		{	
+			int nbTrajets=0;	
+			while(!monflux.eof())
+			{	
+				string str;
+				getline(monflux, str);
+				vector<string> v; 
+				stringstream ss(str); 
+	  
+				while (ss.good()) { 
+					string substr; 
+					getline(ss, substr, ';'); 
+					v.push_back(substr); 
+				} 
+	  
+
+				if(v[0] != "")
+				{
+					++nbTrajets;
+					//cout << "Trajet n°" << nbTrajets<<endl; 		
+					//for (size_t i = 0; i < v.size(); i++) 
+					//cout <<  "v[" << i<< "]:"<<  v[i] << endl;
+						
+				if(v.size()==3 && nbTrajets >= x && nbTrajets <= y)
+				{
+				char* dep = new char[130];
+				char* arr = new char[130];
+				char* mt  = new char[130];
+				strcpy(dep, v[0].c_str());
+				strcpy(arr, v[1].c_str());
+				strcpy(mt, v[2].c_str());
+				TrajetSimple* t  = new TrajetSimple(dep, arr, mt);
+				addTrajet(t);
+				cout << "Trajet Inséré" << endl;
+				//+ Deletes
+				}
+				else if (v.size()>3 && nbTrajets >= x && nbTrajets <= y)
+				{
+					TrajetComp* TC = new TrajetComp();
+					for(int i = 0; i<v.size()/3; i++)
+					{
+							
+						char* dep = new char[130];
+						char* arr = new char[130];
+						char* mt  = new char[130];
+						strcpy(dep, v[0+3*i].c_str());
+						strcpy(arr, v[1+3*i].c_str());
+						strcpy(mt, v[2+3*i].c_str());
+						TrajetSimple* t  = new TrajetSimple(dep, arr, mt);
+						TC->addTrajet(t);	
+					}
+					addTrajet(TC);
+					cout << "Trajet Inséré" << endl;
+				}
+				}
+			}	
+		}
+		else
+		{
+			cout << "ERREUR: Impossible d'ouvrir le fichier." <<endl;
+		}
+		monflux.close();
+	}
 
 
 	void Catalogue::sauvegarde_type(const string name, int type)
@@ -318,6 +389,7 @@ using namespace std;
 					}
 					
 					addTrajet(TC);
+					cout << "Trajet Inséré" << endl;
 				}
 
 				}
