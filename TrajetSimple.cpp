@@ -53,8 +53,12 @@ using namespace std;
 		cin >> arr;
 		cout << "Entrez un moyen de transport " << endl;
 		cin >> mt;		
-
-		return new TrajetSimple(dep, arr, mt);
+		TrajetSimple* t = new TrajetSimple(dep, arr, mt);
+		delete [] dep;
+		delete [] arr;
+		//delete [] mt;
+		
+		return t;
 	}//---fin de creerTrajetSimple
 
 
@@ -96,10 +100,7 @@ TrajetSimple::~TrajetSimple ()
     #ifdef MAP
     		cout << "Appel au destructeur de <TrajetSimple>" << endl;
 	#endif
-	delete [] villeDepart;
-	delete [] villeArr;
 	delete [] moyenT;
-	delete [] type;
 
 } //--- fin du destructeur
 

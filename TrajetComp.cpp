@@ -54,9 +54,11 @@ using namespace std;
 		{
 		//cout << "ajout d'un trajet à l'indice " << nbTrajets << endl;
 			sousTrajets[nbTrajets] = tr;
-			villeDepart = sousTrajets[0]->getDep();
-			villeArr = tr->getArr();
-			type = "comp";
+			//villeDepart = sousTrajets[0]->getDep();
+			//villeArr = tr->getArr();
+			strcpy(villeDepart, sousTrajets[0]->getDep());
+			strcpy(villeArr, tr->getArr());
+			strcpy(type, "comp");
 			++nbTrajets;
 		}
 		else
@@ -114,7 +116,7 @@ TrajetComp::TrajetComp()
 {
 
 	#ifdef MAP
-    	cout << "Appel au constructeur sans argument de <TrajetComp>" << endl;
+    	cout << "Appel au constructeur sans arguments  de <TrajetComp>" << endl;
 	#endif
 	Trajet();
 	sousTrajets = new Trajet*[50];

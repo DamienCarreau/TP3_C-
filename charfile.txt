@@ -1,0 +1,3 @@
+Paris;Nantes;Train
+Lyon;Bordeaux;Avion;Bordeaux;Rennes;Train
+Angert;Tours;Covoiturage
