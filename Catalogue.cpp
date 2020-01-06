@@ -103,7 +103,7 @@ using namespace std;
 				cout << "Trajet Inséré" << endl;
 				delete [] dep;
 				delete [] arr;
-				delete [] mt;
+				
 				}
 				else if (v.size()>3)
 				{
@@ -118,7 +118,10 @@ using namespace std;
 						strcpy(arr, v[1+3*i].c_str());
 						strcpy(mt, v[2+3*i].c_str());
 						TrajetSimple* t  = new TrajetSimple(dep, arr, mt);
-						TC->addTrajet(t);	
+						TC->addTrajet(t);
+
+						delete [] dep;
+						delete [] arr;
 					}
 					addTrajet(TC);
 					cout << "Trajet Inséré" << endl;
@@ -177,7 +180,8 @@ using namespace std;
 				TrajetSimple* t  = new TrajetSimple(dep, arr, mt);
 				addTrajet(t);
 				cout << "Trajet Inséré" << endl;
-				//+ Deletes
+				delete [] dep;
+				delete [] arr;
 				}
 				else if (v.size()>3 && type==2)
 				{
@@ -192,7 +196,9 @@ using namespace std;
 						strcpy(arr, v[1+3*i].c_str());
 						strcpy(mt, v[2+3*i].c_str());
 						TrajetSimple* t  = new TrajetSimple(dep, arr, mt);
-						TC->addTrajet(t);	
+						TC->addTrajet(t);			
+						delete [] dep;
+						delete [] arr;
 					}
 					addTrajet(TC);
 					cout << "Trajet Inséré" << endl;
@@ -246,8 +252,9 @@ using namespace std;
 				strcpy(mt, v[2].c_str());
 				TrajetSimple* t  = new TrajetSimple(dep, arr, mt);
 				addTrajet(t);
-				cout << "Trajet Inséré" << endl;
-				//+ Deletes
+				cout << "Trajet Inséré" << endl;	
+				delete [] dep;
+				delete [] arr;
 				}
 				else if (v.size()>3 && nbTrajets >= x && nbTrajets <= y)
 				{
@@ -262,7 +269,9 @@ using namespace std;
 						strcpy(arr, v[1+3*i].c_str());
 						strcpy(mt, v[2+3*i].c_str());
 						TrajetSimple* t  = new TrajetSimple(dep, arr, mt);
-						TC->addTrajet(t);	
+						TC->addTrajet(t);
+						delete [] dep;
+						delete [] arr;
 					}
 					addTrajet(TC);
 					cout << "Trajet Inséré" << endl;
@@ -344,7 +353,7 @@ using namespace std;
 	void Catalogue::Chargement_ville(const string name, const char* ville, const int type)
 	{
 		
-		ifstream monflux("testfile.txt");
+		ifstream monflux(name.c_str());
 		if(monflux)
 		{
 			int nbTrajets=-1;
@@ -383,7 +392,6 @@ using namespace std;
 				cout << "Trajet Inséré" << endl;	
 				delete [] dep;
 				delete [] arr;
-				delete [] mt;
 				}
 				else if (v.size()>3 && ( (strcmp(v[0].c_str(),ville)==0 && type==1) || (strcmp(v[v.size()-2].c_str(), ville)==0 && type==2) ) )
 				{
@@ -398,7 +406,9 @@ using namespace std;
 						strcpy(arr, v[1+3*i].c_str());
 						strcpy(mt, v[2+3*i].c_str());
 						TrajetSimple* t  = new TrajetSimple(dep, arr, mt);
-						TC->addTrajet(t);	
+						TC->addTrajet(t);
+						delete [] dep;
+						delete [] arr;
 					}
 					
 					addTrajet(TC);
@@ -485,7 +495,7 @@ using namespace std;
 			cout << "Entrez le nombre de trajet;" << endl;
 			int nb;
 			cin >> nb;
-			TrajetComp*  T = new TrajetComp;
+			TrajetComp*  T = new TrajetComp();
 			T->creerTrajetComp(nb);
 			this->addTrajet(T);
 

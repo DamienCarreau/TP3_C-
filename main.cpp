@@ -127,6 +127,7 @@ int main()
 				char * ville = new char[128];
 				cin >> ville;
 				C.sauvegarde_ville(name,ville,choice);
+				delete[] ville;
 			}else if(choice == 4)
 			{
 				cout << "Entrez la première borne de votre intervalle :"<<endl;

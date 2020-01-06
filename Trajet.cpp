@@ -70,9 +70,19 @@ using namespace std;
 
 Trajet::Trajet()
 {
+	/*
 	villeDepart = "";
 	villeArr = "";
-	type = "";
+	type = "";*/
+
+	
+	villeDepart = new char[130];
+	villeArr = new char[130];
+	type = new char[130]; 
+	strcpy(villeDepart, " ");
+	strcpy(villeArr, " ");	
+	strcpy(type, " ");
+
 	#ifdef MAP
 		cout << "Appel au constructeur par defaut sans paramètres de <Trajet>" << endl;
 	#endif
@@ -115,7 +125,10 @@ Trajet::~Trajet()
 
 	#ifdef MAP
     		cout << "Appel au destructeur de <Trajet>" << endl;
-	#endif
+	#endif	
+	delete [] villeDepart;
+	delete [] villeArr;
+	delete [] type;
 } //----- Fin de ~Trajet
 
 //------------------------------------------------------------------ PRIVE
