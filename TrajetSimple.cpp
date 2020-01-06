@@ -31,7 +31,7 @@ using namespace std;
 
 	void TrajetSimple::sauvegarde(ofstream & flux)
 	{
-		flux << villeDepart << " " << villeArr << " " << moyenT;
+		flux << villeDepart << ";" << villeArr << ";" << moyenT;
 	}//------fin de sauvegarde
 
 	void TrajetSimple::setMoyenT(const char* mt)
@@ -99,7 +99,6 @@ TrajetSimple::~TrajetSimple ()
 	delete [] villeDepart;
 	delete [] villeArr;
 	delete [] moyenT;
-	delete [] type;
 
 } //--- fin du destructeur
 

@@ -38,9 +38,12 @@ using namespace std;
 
 	void TrajetComp::sauvegarde(ofstream & flux)
 	{
-		for(int i = 0; i < nbTrajets; i++){
-			sousTrajets[i]->sauvegarde(flux);
-			flux << " ";
+		if(nbTrajets > 0){
+			sousTrajets[0]->sauvegarde(flux);
+			for(int i = 1; i < nbTrajets; i++){
+				flux << ";";
+				sousTrajets[i]->sauvegarde(flux);
+			}
 		}
 	}	
 
