@@ -1,0 +1,131 @@
+% Tout ce qui est mis derrière un « % » n'est pas vu par LaTeX
+% On appelle cela des « commentaires ».  Les commentaires permettent de
+% commenter son document - comme ce que je suis en train de faire
+% actuellement - et de cacher du code - cf. la ligne \pagestyle.
+
+\documentclass[a4paper]{article}
+
+% Options possibles : 10pt, 11pt, 12pt (taille de la fonte)
+%                     oneside, twoside (recto simple, recto-verso)
+%                     draft, final (stade de développement)
+
+\usepackage[utf8]{inputenc}   % LaTeX, comprends les accents !
+\usepackage[T1]{fontenc}      % Police contenant les caractères français
+\usepackage[french]{babel}  % Placez ici une liste de langues                          
+\usepackage{listings}
+\usepackage[a4paper]{geometry}% Réduire les marges
+% \pagestyle{headings}        % Pour mettre des entêtes avec les titres
+                              % des sections en haut de page
+\usepackage{geometry}
+\geometry{hmargin=2.5cm, vmargin=1.5cm}                              
+\usepackage{graphicx}
+\usepackage{enumitem}
+\frenchbsetup{StandardLists=true}
+
+\title{TP C++ n$^{\circ}$2 : Gestion des entrées / sorties}           % Les paramètres du titre : titre, auteur, date
+\author{ Damien Carreau \and Jérôme Hue }
+                       % La date n'est pas requise (la date du
+                              % jour de compilation est utilisée en son
+			      % absence)
+
+\sloppy                       % Ne pas faire déborder les lignes dans la marge
+
+%Gestion des couleurs
+\usepackage{xcolor}
+ 
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+%pour le code
+\lstdefinestyle{mystyle}{
+    %backgroundcolor=\color{backcolour}, 
+    frame=single,  
+    %commentstyle=\color{codegreen},
+    %keywordstyle=\color{magenta},
+    %numberstyle=\tiny\color{codegray},
+    %stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=mystyle}
+
+\begin{document}
+
+\maketitle                    % Faire un titre utilisant les données
+                              % passées à \title, \author et \date
+
+
+
+\tableofcontents              % Table des matières
+
+% \part{Titre}                % Commencer une partie...
+
+\section{Nouvelles fonctionnalités}         % Commencer une section, etc.
+
+
+
+
+
+
+\subsection{Description du fichier de sauvegarde/chargement}
+
+Le fichier servant à charger des trajets est un fichier texte dans lequel chaque trajet est spécifié sur une ligne. Un trajet est spécifié par ses attributs séparés par des points virgules (Il y a donc n+1 élements pour n points virgules), comme suit pour un trajet simple : \\
+\textit{ville de départ};\textit{ville d'arrivée};\textit{moyen de transport} \\
+et pour un trajet composé : \\ 
+\textit{ville de départ};\textit{ville d'arrivée};\textit{moyen de transport};\textit{ville de départ};\textit{ville d'arrivée};\textit{moyen de transport}... \\
+Il n'est donc pas nécessaire de spécifier si un trajet est simple ou composé, le programme le détecte de lui même, ce qui implique qu'un trajet qui comporte 3 points-virgules ou plus est considéré comme trajet composé. Un trajet composé est composé de trajets simples \textsc{complets}, voir la sous-section suivante pour plus de détails.
+\subsection{Cas particuliers}
+Voici une liste de différents cas particuliers : 
+\begin{itemize}
+  \item \textit{ville de départ};\textit{ville d'arrivée};\textit{moyen de transport};\\
+  Ici, on a terminé la liste par un point virgule. Le programme va considérer que ce trajet est composé et logiquement insérer un trajet composé d'un seul trajet simple ( De \textit{ville de départ} à \textit{ville d'arrivée} par \textit{moyen de transport}). Ce cas nécessite d'être vigilant, car si l'on charge uniquement les trajets simples, ce trajet n'est évidemment par chargé.
+  \item \textit{ville de départ};\textit{ville d'arrivée};\textit{moyen de transport};\textit{ville de départ};\textit{ville d'arrivée};\textit{moyen de transport};\textit{ville de départ} \\
+  Ici la ligne est bien terminée mais il manque deux éléments. Sera chargé dans le catalogue un trajet composé des deux premiers trajets simples.
+  \item \textit{ville de départ};\textit{ville d'arrivée};\textit{moyen de transport};\textit{ville de départ};\textit{ville d'arrivée};\textit{moyen de transport};\textit{ville de départ};\textit{ville d'arrivée};\\
+  Ce trajet comporte 9 élements, donc on charge un trajet composé de 3 trajets simples, avec le moyen de transport du dernier trajet simple non renseigné.
+\end{itemize}  
+
+Enfin, concernant l'intervalle, il est possible de choisir un intervalle plus grand que le nombre de trajets, ou bien un intervalle qui ne comporte aucun trajet.
+ 
+
+\subsection{Spécification des nouvelles fonctionnalités}
+
+
+
+\section{Problèmes rencontrés et axes d'amélioration}
+
+\subsection{Problèmes rencontrés}
+Pour gérer la collection ordonnées, on utilise un tableau dynamique. Son principal avantage est qu'il permet un accès rapide a un élément i du tableau. De plus, il n'est pas spécifié dans les consignes du TP d'implémenter une fonction permettant de supprimer un trajet du tableau, ce qui est l'un des principaux désavantages d'un tableau dynamique par rapport à une liste chaînée. Reste alors comme désavantage le fait d'avoir à copier l'intégralité du tableau lorsque celui-ci est rempli. En pratique, le tableau étant rempli à la main, cela importe peu puisque on n'atteindra pas souvent la capacité maximum du tableau.
+
+\subsection{Axes d'amélioration et d'évolution}
+
+
+
+
+% \paragraph{Titre}           % Toutes petites sections (le nom \paragraph
+                              % n'est pas très bien choisi)
+
+% \subparagraph{Titre}        % La dernière
+
+% \appendix                   % Commençons les annexes
+
+% \section{Titre}             % Annexe A
+
+% \section{Titre}             % Annexe B
+
+% \listoffigures              % Table des figures
+
+% \listoftables               % Liste des tableaux
+
+\end{document}
