@@ -22,43 +22,15 @@
 \usepackage{enumitem}
 \frenchbsetup{StandardLists=true}
 
-\title{TP C++ n$^{\circ}$2 : Gestion des entrées / sorties}           % Les paramètres du titre : titre, auteur, date
+\title{TP C\texttt{++} n$^{\circ}$3 : Gestion des entrées / sorties}           % Les paramètres du titre : titre, auteur, date
 \author{ Damien Carreau \and Jérôme Hue }
                        % La date n'est pas requise (la date du
                               % jour de compilation est utilisée en son
-			      % absence)
+			      			% absence)
 
 \sloppy                       % Ne pas faire déborder les lignes dans la marge
 
 %Gestion des couleurs
-\usepackage{xcolor}
- 
-\definecolor{codegreen}{rgb}{0,0.6,0}
-\definecolor{codegray}{rgb}{0.5,0.5,0.5}
-\definecolor{codepurple}{rgb}{0.58,0,0.82}
-\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
-
-%pour le code
-\lstdefinestyle{mystyle}{
-    %backgroundcolor=\color{backcolour}, 
-    frame=single,  
-    %commentstyle=\color{codegreen},
-    %keywordstyle=\color{magenta},
-    %numberstyle=\tiny\color{codegray},
-    %stringstyle=\color{codepurple},
-    basicstyle=\ttfamily\footnotesize,
-    breakatwhitespace=false,         
-    breaklines=true,                 
-    captionpos=b,                    
-    keepspaces=true,                 
-    numbers=left,                    
-    numbersep=5pt,                  
-    showspaces=false,                
-    showstringspaces=false,
-    showtabs=false,                  
-    tabsize=2
-}
-\lstset{style=mystyle}
 
 \begin{document}
 
@@ -80,7 +52,9 @@
 
 \subsection{Description du fichier de sauvegarde/chargement}
 
-Le fichier servant à charger des trajets est un fichier texte dans lequel chaque trajet est spécifié sur une ligne. Un trajet est spécifié par ses attributs séparés par des points virgules (Il y a donc n+1 élements pour n points virgules), comme suit pour un trajet simple : \\
+On a choisi de sauvegarder nos trajets dans un fichier texte. On saisira donc  son nom de la manière suivante : 
+\textit{monfichier.txt}
+Le fichier servant à charger des trajets est un fichier texte dans lequel chaque trajet est spécifié sur une ligne. Un trajet est spécifié par ses attributs séparés par des points-virgules (Il y a donc n+1 éléments pour n points-	virgules), comme suit pour un trajet simple : \\
 \textit{ville de départ};\textit{ville d'arrivée};\textit{moyen de transport} \\
 et pour un trajet composé : \\ 
 \textit{ville de départ};\textit{ville d'arrivée};\textit{moyen de transport};\textit{ville de départ};\textit{ville d'arrivée};\textit{moyen de transport}... \\
@@ -93,22 +67,22 @@ Voici une liste de différents cas particuliers :
   \item \textit{ville de départ};\textit{ville d'arrivée};\textit{moyen de transport};\textit{ville de départ};\textit{ville d'arrivée};\textit{moyen de transport};\textit{ville de départ} \\
   Ici la ligne est bien terminée mais il manque deux éléments. Sera chargé dans le catalogue un trajet composé des deux premiers trajets simples.
   \item \textit{ville de départ};\textit{ville d'arrivée};\textit{moyen de transport};\textit{ville de départ};\textit{ville d'arrivée};\textit{moyen de transport};\textit{ville de départ};\textit{ville d'arrivée};\\
-  Ce trajet comporte 9 élements, donc on charge un trajet composé de 3 trajets simples, avec le moyen de transport du dernier trajet simple non renseigné.
+  Ce trajet comporte 9 éléments, donc on charge un trajet composé de 3 trajets simples, avec le moyen de transport du dernier trajet simple non renseigné.
 \end{itemize}  
 
 Enfin, concernant l'intervalle, il est possible de choisir un intervalle plus grand que le nombre de trajets, ou bien un intervalle qui ne comporte aucun trajet.
  
-
-\subsection{Spécification des nouvelles fonctionnalités}
-
-
-
-\section{Problèmes rencontrés et axes d'amélioration}
+\section{Conclusion}
 
 \subsection{Problèmes rencontrés}
-Pour gérer la collection ordonnées, on utilise un tableau dynamique. Son principal avantage est qu'il permet un accès rapide a un élément i du tableau. De plus, il n'est pas spécifié dans les consignes du TP d'implémenter une fonction permettant de supprimer un trajet du tableau, ce qui est l'un des principaux désavantages d'un tableau dynamique par rapport à une liste chaînée. Reste alors comme désavantage le fait d'avoir à copier l'intégralité du tableau lorsque celui-ci est rempli. En pratique, le tableau étant rempli à la main, cela importe peu puisque on n'atteindra pas souvent la capacité maximum du tableau.
+
+Ce TP ne vit pas d'obstacles majeurs, contrairement au premier. Concernant le chargement de trajets, la difficulté fut la gestion des différents formats de chaînes de caractères : \textit{string}, \textit{char *}, \textit{const char *}; on finira par modifier la classe \textit{Trajet}. Une fois un seul mode de sauvegarde/chargement programmé, il est facile d'implémenter les 3 autres. Si parvenir à un programme s'exécutant sans fuites de mémoires ni erreurs fut complexe lors du précédent TP, ce ne fut ici que l'objet de rapides corrections de code.
+
 
 \subsection{Axes d'amélioration et d'évolution}
+
+Sur le plan technique, le code peut grandement être amélioré en factorisant le contenu des différentes méthodes de sauvegarde et de chargement. On peut aussi utiliser la STL et la classe string, là où cela nous était défendu auparavant.
+Sur le plan fonctionnel, des ajouts appréciables pourraient être le croisement de plusieurs critères de recherche (par exemple rechercher uniquement les trajets simples au départ de Paris), ou encore la sauvegarde d'une recherche.
 
 
 
