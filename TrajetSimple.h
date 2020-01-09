@@ -36,6 +36,7 @@ public:
 	//sa ville d'arrivée et son moyen de transport
 	
 	void sauvegarde(ofstream & flux);
+	//permet de sauvegarder le trajet dans le flux passé en paramètre
 
 	void setMoyenT(const char* mt);
 	//Mode d'emploi :
