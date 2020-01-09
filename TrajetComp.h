@@ -34,6 +34,7 @@ public:
 	//Affiche un trajet composé en affichant un à un ses sous-trajets 
 
 	void sauvegarde(ofstream & flux);
+	//permet de sauvegarder le trajet dans le flux passé en paramètre
 
 	void addTrajet(Trajet* tr);
 	//Mode d'emploi :
