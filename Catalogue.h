@@ -41,12 +41,23 @@ public:
 	//Affiche tous les trajets du catalogue
 
 	void sauvegarde(const string name);
+	//permet de sauvegarder totalement le catalogue actuel dans un fichier dont le nom est passé en paramètre
 
 	void sauvegarde_type(const string name, int type);
+	//permet de sauvegarder tout les trajets du type passé en paramètre du catalogue actuel 
+	//dans un fichier dont le nom est passé en paramètre
+	// type = 1 ==> trajets simples
+	// type = 2 ==> trajets composés
 
 	void sauvegarde_ville(const string name, const char* ville, const int type);
+	//permet de sauvegarder les trajets du catalogue actuel dont le depart/arrivé est passé en paramètre
+	//dans un fichier dont le nom est passé en paramètre
+	//le paramètre type indique si la ville passé en paramètre concerne le depart ou l'arrivé
 	
 	void sauvegarde_intervalle(const string name, const int a, const int b);
+	//permet de sauvegarder du trajet a au trajet b du catalogue actuel 
+	//dans un fichier dont le nom est passé en paramètre
+	//a et b étant des paramètres de la fonction
 	
 	void Chargement(const string name);
 	
