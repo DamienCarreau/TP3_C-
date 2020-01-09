@@ -60,21 +60,22 @@ using namespace std;
 
 
 	void Catalogue::Chargement(const string name)
+	//Algorithme :
+	//-Pour chaque ligne du fichier : 
+	//--Décompose la ligne et insère chaque élément dans un vector
+	//--Crée un trajet à partir de ce vector et l'insère dans le catalogue
 	{
-		
  		ifstream monflux(name.c_str());
 		if(monflux) 
 		{
 			int nbTrajets=-1;
 			while(!monflux.eof())
 			{	
-				
 				string str;
 				getline(monflux, str);
 				vector<string> v; 
-	  
 				stringstream ss(str); 
-	  
+				
 				while (ss.good()) 
 				{ 
 					string substr; 
@@ -84,59 +85,53 @@ using namespace std;
 	  
 
 				if(v[0] != "")
-				{
-
+				{	
 					//cout << "Trajet n°" << ++nbTrajets<<endl; 		
 					//for (size_t i = 0; i < v.size(); i++) 
-					//	cout <<  "v[" << i<< "]:"<<  v[i] << endl;
-						
-				if(v.size()==3)
-				{
-				char* dep = new char[130];
-				char* arr = new char[130];
-				char* mt  = new char[130];
-				strcpy(dep, v[0].c_str());
-				strcpy(arr, v[1].c_str());
-				strcpy(mt, v[2].c_str());
-				TrajetSimple* t  = new TrajetSimple(dep, arr, mt);
-				addTrajet(t);
-				cout << "Trajet Inséré" << endl;
-				delete [] dep;
-				delete [] arr;
-				
-				}
-				else if (v.size()>3)
-				{
-					TrajetComp* TC = new TrajetComp();
-					for(int i = 0; i<v.size()/3; i++)
+					//cout <<  "v[" << i<< "]:"<<  v[i] << endl;
+					if(v.size()==3)
 					{
-							
-						char* dep = new char[130];
-						char* arr = new char[130];
-						char* mt  = new char[130];
-						strcpy(dep, v[0+3*i].c_str());
-						strcpy(arr, v[1+3*i].c_str());
-						strcpy(mt, v[2+3*i].c_str());
-						TrajetSimple* t  = new TrajetSimple(dep, arr, mt);
-						TC->addTrajet(t);
-
-						delete [] dep;
-						delete [] arr;
-					}
-					addTrajet(TC);
+					char* dep = new char[130];
+					char* arr = new char[130];
+					char* mt  = new char[130];
+					strcpy(dep, v[0].c_str());
+					strcpy(arr, v[1].c_str());
+					strcpy(mt, v[2].c_str());
+					TrajetSimple* t  = new TrajetSimple(dep, arr, mt);
+					addTrajet(t);
 					cout << "Trajet Inséré" << endl;
-				}
-				}
+					delete [] dep;
+					delete [] arr;
+					}
+					else if (v.size()>3)
+					{
+						TrajetComp* TC = new TrajetComp();
+						for(int i = 0; i<v.size()/3; i++)
+						{
 
-			}
-				
+							char* dep = new char[130];
+							char* arr = new char[130];
+							char* mt  = new char[130];
+							strcpy(dep, v[0+3*i].c_str());
+							strcpy(arr, v[1+3*i].c_str());
+							strcpy(mt, v[2+3*i].c_str());
+							TrajetSimple* t  = new TrajetSimple(dep, arr, mt);
+							TC->addTrajet(t);
+
+							delete [] dep;
+							delete [] arr;
+						}
+						addTrajet(TC);
+						cout << "Trajet Inséré" << endl;
+					}
+				}
+			}	
 		} 
 		else 
 		{	
 			cout << "ERREUR: Impossible d'ouvrir le fichier." <<endl;
 		}	
 		monflux.close();
-
 	}
 
 	
@@ -154,55 +149,48 @@ using namespace std;
 				vector<string> v; 
 				stringstream ss(str); 
 	  
-				while (ss.good()) { 
+				while (ss.good()) 
+				{ 
 					string substr; 
 					getline(ss, substr, ';'); 
 					v.push_back(substr); 
-				} 
-	  
-				//cout << "Taile : " << v.size() << endl;
-
+				}
 				if(v[0] != "")
 				{
-
-					//cout << "Trajet n°" << ++nbTrajets<<endl; 		
-					//for (size_t i = 0; i < v.size(); i++) 
-					//cout <<  "v[" << i<< "]:"<<  v[i] << endl;
-						
-				if(v.size()==3 && type==1)
-				{
-				char* dep = new char[130];
-				char* arr = new char[130];
-				char* mt  = new char[130];
-				strcpy(dep, v[0].c_str());
-				strcpy(arr, v[1].c_str());
-				strcpy(mt, v[2].c_str());
-				TrajetSimple* t  = new TrajetSimple(dep, arr, mt);
-				addTrajet(t);
-				cout << "Trajet Inséré" << endl;
-				delete [] dep;
-				delete [] arr;
-				}
-				else if (v.size()>3 && type==2)
-				{
-					TrajetComp* TC = new TrajetComp();
-					for(int i = 0; i<v.size()/3; i++)
+					if(v.size()==3 && type==1)
 					{
-							
 						char* dep = new char[130];
 						char* arr = new char[130];
 						char* mt  = new char[130];
-						strcpy(dep, v[0+3*i].c_str());
-						strcpy(arr, v[1+3*i].c_str());
-						strcpy(mt, v[2+3*i].c_str());
+						strcpy(dep, v[0].c_str());
+						strcpy(arr, v[1].c_str());
+						strcpy(mt, v[2].c_str());
 						TrajetSimple* t  = new TrajetSimple(dep, arr, mt);
-						TC->addTrajet(t);			
+						addTrajet(t);
+						cout << "Trajet Inséré" << endl;
 						delete [] dep;
 						delete [] arr;
 					}
-					addTrajet(TC);
-					cout << "Trajet Inséré" << endl;
-				}
+					else if (v.size()>3 && type==2)
+					{
+						TrajetComp* TC = new TrajetComp();
+						for(int i = 0; i<v.size()/3; i++)
+						{
+
+							char* dep = new char[130];
+							char* arr = new char[130];
+							char* mt  = new char[130];
+							strcpy(dep, v[0+3*i].c_str());
+							strcpy(arr, v[1+3*i].c_str());
+							strcpy(mt, v[2+3*i].c_str());
+							TrajetSimple* t  = new TrajetSimple(dep, arr, mt);
+							TC->addTrajet(t);			
+							delete [] dep;
+							delete [] arr;
+						}
+						addTrajet(TC);
+						cout << "Trajet Inséré" << endl;
+					}
 				}
 			}	
 		}
@@ -228,54 +216,48 @@ using namespace std;
 				vector<string> v; 
 				stringstream ss(str); 
 	  
-				while (ss.good()) { 
+				while (ss.good()) 
+				{ 	
 					string substr; 
 					getline(ss, substr, ';'); 
 					v.push_back(substr); 
-				} 
-	  
-
+				}
 				if(v[0] != "")
 				{
 					++nbTrajets;
-					//cout << "Trajet n°" << nbTrajets<<endl; 		
-					//for (size_t i = 0; i < v.size(); i++) 
-					//cout <<  "v[" << i<< "]:"<<  v[i] << endl;
-						
-				if(v.size()==3 && nbTrajets >= x && nbTrajets <= y)
-				{
-				char* dep = new char[130];
-				char* arr = new char[130];
-				char* mt  = new char[130];
-				strcpy(dep, v[0].c_str());
-				strcpy(arr, v[1].c_str());
-				strcpy(mt, v[2].c_str());
-				TrajetSimple* t  = new TrajetSimple(dep, arr, mt);
-				addTrajet(t);
-				cout << "Trajet Inséré" << endl;	
-				delete [] dep;
-				delete [] arr;
-				}
-				else if (v.size()>3 && nbTrajets >= x && nbTrajets <= y)
-				{
-					TrajetComp* TC = new TrajetComp();
-					for(int i = 0; i<v.size()/3; i++)
+					if(v.size()==3 && nbTrajets >= x && nbTrajets <= y)
 					{
-							
 						char* dep = new char[130];
 						char* arr = new char[130];
 						char* mt  = new char[130];
-						strcpy(dep, v[0+3*i].c_str());
-						strcpy(arr, v[1+3*i].c_str());
-						strcpy(mt, v[2+3*i].c_str());
+						strcpy(dep, v[0].c_str());
+						strcpy(arr, v[1].c_str());
+						strcpy(mt, v[2].c_str());
 						TrajetSimple* t  = new TrajetSimple(dep, arr, mt);
-						TC->addTrajet(t);
+						addTrajet(t);
+						cout << "Trajet Inséré" << endl;	
 						delete [] dep;
 						delete [] arr;
 					}
-					addTrajet(TC);
-					cout << "Trajet Inséré" << endl;
-				}
+					else if (v.size()>3 && nbTrajets >= x && nbTrajets <= y)
+					{
+						TrajetComp* TC = new TrajetComp();
+						for(int i = 0; i<v.size()/3; i++)
+						{
+							char* dep = new char[130];
+							char* arr = new char[130];
+							char* mt  = new char[130];
+							strcpy(dep, v[0+3*i].c_str());
+							strcpy(arr, v[1+3*i].c_str());
+							strcpy(mt, v[2+3*i].c_str());
+							TrajetSimple* t  = new TrajetSimple(dep, arr, mt);
+							TC->addTrajet(t);
+							delete [] dep;
+							delete [] arr;
+						}
+						addTrajet(TC);
+						cout << "Trajet Inséré" << endl;
+					}
 				}
 			}	
 		}
@@ -357,7 +339,6 @@ using namespace std;
 		if(monflux)
 		{
 			int nbTrajets=-1;
-			
 			while(!monflux.eof())
 			{	
 				string str;
@@ -374,49 +355,40 @@ using namespace std;
 
 				if(v[0] != "")
 				{
-
-					//cout << "Trajet n°" << ++nbTrajets<<endl; 		
-					//for (size_t i = 0; i < v.size(); i++) 
-					//cout <<  "v[" << i<< "]:"<<  v[i] << endl;
-						
-				if(v.size()==3 && strcmp(v[type-1].c_str(),ville)==0 )
-				{
-				char* dep = new char[130];
-				char* arr = new char[130];
-				char* mt  = new char[130];
-				strcpy(dep, v[0].c_str());
-				strcpy(arr, v[1].c_str());
-				strcpy(mt, v[2].c_str());
-				TrajetSimple* t  = new TrajetSimple(dep, arr, mt);
-				addTrajet(t);
-				cout << "Trajet Inséré" << endl;	
-				delete [] dep;
-				delete [] arr;
-				}
-				else if (v.size()>3 && ( (strcmp(v[0].c_str(),ville)==0 && type==1) || (strcmp(v[v.size()-2].c_str(), ville)==0 && type==2) ) )
-				{
-					TrajetComp* TC = new TrajetComp();
-					for(int i = 0; i<v.size()/3; i++)
+					if(v.size()==3 && strcmp(v[type-1].c_str(),ville)==0 )
 					{
-							
 						char* dep = new char[130];
 						char* arr = new char[130];
 						char* mt  = new char[130];
-						strcpy(dep, v[0+3*i].c_str());
-						strcpy(arr, v[1+3*i].c_str());
-						strcpy(mt, v[2+3*i].c_str());
+						strcpy(dep, v[0].c_str());
+						strcpy(arr, v[1].c_str());
+						strcpy(mt, v[2].c_str());
 						TrajetSimple* t  = new TrajetSimple(dep, arr, mt);
-						TC->addTrajet(t);
+						addTrajet(t);
+						cout << "Trajet Inséré" << endl;	
 						delete [] dep;
 						delete [] arr;
 					}
-					
-					addTrajet(TC);
-					cout << "Trajet Inséré" << endl;
-				}
-
-				}
-					
+					else if (v.size()>3 && ( (strcmp(v[0].c_str(),ville)==0 && type==1) || (strcmp(v[v.size()-2].c_str(), ville)==0 && type==2) ) )
+					{
+						TrajetComp* TC = new TrajetComp();
+						for(int i = 0; i<v.size()/3; i++)
+						{
+							char* dep = new char[130];
+							char* arr = new char[130];
+							char* mt  = new char[130];
+							strcpy(dep, v[0+3*i].c_str());
+							strcpy(arr, v[1+3*i].c_str());
+							strcpy(mt, v[2+3*i].c_str());
+							TrajetSimple* t  = new TrajetSimple(dep, arr, mt);
+							TC->addTrajet(t);
+							delete [] dep;
+							delete [] arr;
+						}
+						addTrajet(TC);
+						cout << "Trajet Inséré" << endl;
+					}
+				}	
 			}
 		} 
 		else 
