@@ -2,8 +2,8 @@
               Classe TrajetSimple  - décrit un trajet simple
                              -------------------
     début                : 22/11/2019
-    copyright            : (C) 2019 par J.HUE, F.HACHIM
-    e-mail               : jerome.hue@insa-lyon.fr / faouz.hachim@insa-lyon.fr
+    copyright            : (C) 2019 par J.HUE, D.CARREAU
+    e-mail               : jerome.hue@insa-lyon.fr / damien.carreau@insa-lyon.fr
 *************************************************************************/
 
 //-Réalisation de la classe <TrajetSimple> (fichier TrajetSimple.cpp) ----
