@@ -52,15 +52,13 @@
 
 \subsection{Description du fichier de sauvegarde/chargement}
 
-On a choisi de sauvegarder nos trajets dans un fichier texte. On saisira donc  son nom de la manière suivante : 
-\textit{monfichier.txt}
 Le fichier servant à charger des trajets est un fichier texte dans lequel chaque trajet est spécifié sur une ligne. Un trajet est spécifié par ses attributs séparés par des points-virgules (Il y a donc n+1 éléments pour n points-	virgules), comme suit pour un trajet simple : \\
 \textit{ville de départ};\textit{ville d'arrivée};\textit{moyen de transport} \\
 et pour un trajet composé : \\ 
 \textit{ville de départ};\textit{ville d'arrivée};\textit{moyen de transport};\textit{ville de départ};\textit{ville d'arrivée};\textit{moyen de transport}... \\
 Il n'est donc pas nécessaire de spécifier si un trajet est simple ou composé, le programme le détecte de lui même, ce qui implique qu'un trajet qui comporte 3 points-virgules ou plus est considéré comme trajet composé. Un trajet composé est composé de trajets simples \textsc{complets}, voir la sous-section suivante pour plus de détails.
 \subsection{Cas particuliers}
-Voici une liste de différents cas particuliers : 
+Voici une liste de différents cas particuliers, afin de mieux comprendre le fonctionnement du format de fichier: 
 \begin{itemize}
   \item \textit{ville de départ};\textit{ville d'arrivée};\textit{moyen de transport};\\
   Ici, on a terminé la liste par un point virgule. Le programme va considérer que ce trajet est composé et logiquement insérer un trajet composé d'un seul trajet simple ( De \textit{ville de départ} à \textit{ville d'arrivée} par \textit{moyen de transport}). Ce cas nécessite d'être vigilant, car si l'on charge uniquement les trajets simples, ce trajet n'est évidemment par chargé.
