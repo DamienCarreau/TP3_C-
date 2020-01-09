@@ -40,6 +40,9 @@ public:
 	//Virtual car Trajet est parent de TrajetSimple et TrajetComp
 	
 	virtual void sauvegarde(ofstream & flux);
+	//fonction redéfinie dans les classes filles
+	//permet de sauvegarder le trajet dans le flux passé en paramètre
+	
 //--------------------------------------------------Accesseurs et mutateurs
 
     	void setDepp(const char*  dep);
